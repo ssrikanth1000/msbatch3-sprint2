@@ -2,6 +2,8 @@ package com.sl.ms.inventorymanagement.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +17,16 @@ import com.sl.ms.inventorymanagement.serviceimpl.OrderServiceImpl;
 
 @RestController
 public class MyController {
-	
+	private static final Logger LOGGER = LogManager.getLogger(MyController.class);
 	@Autowired
 	OrderServiceImpl orderServiceImpl;
+	
+	
+	@GetMapping("/products/getHystrix")
+	public String getHystrix() {
+		LOGGER.info("entery into orders");
+		return "hello";
+	}
 	@GetMapping("/products")
 	public List<Products> orders() {
 		List<Products> list=orderServiceImpl.listOfOrders();
